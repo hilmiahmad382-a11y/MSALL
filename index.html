@@ -1,224 +1,128 @@
-<!doctype html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Greetings Quiz (10 points each)</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 16px; }
-    .question { padding: 12px 14px; border: 1px solid #ddd; border-radius: 10px; margin: 12px 0; }
-    .q-title { margin: 0 0 8px 0; font-weight: 700; }
-    .choices label { display: block; margin: 6px 0; cursor: pointer; }
-    button { padding: 10px 14px; font-size: 16px; cursor: pointer; }
-    #result { margin-top: 16px; padding: 12px 14px; background: #f6f7f9; border-radius: 10px; }
-    .correct { color: #0a7a2f; font-weight: 700; }
-    .wrong { color: #b00020; font-weight: 700; }
-    .muted { color: #666; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About My Family - Writing Exercise</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background:#f4f6f9;
+}
+
+.container{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+h1,h2{
+    color:#2c3e50;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    margin-top:10px;
+}
+
+input{
+    padding:8px;
+    margin:5px;
+}
+
+button{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+.correct{
+    color:green;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
+}
+</style>
 </head>
 <body>
-  <h1>Greetings Quiz</h1>
-  <p class="muted">Each correct answer = 10 points. Maximum score = 100.</p>
 
-  <form id="quizForm">
-    <div class="question">
-      <p class="q-title">Student info</p>
-      <div class="choices">
-        <label>Name: <input type="text" name="studentName" required></label>
-        <label>Class: <input type="text" name="studentClass" required></label>
-      </div>
-    </div>
+<div class="container">
 
-    <div class="question" data-q="1">
-      <p class="q-title">1) You meet your teacher at 7:00 AM. What do you say?</p>
-      <div class="choices">
-        <label><input type="radio" name="q1" value="A"> A. Good night</label>
-        <label><input type="radio" name="q1" value="B"> B. Good morning</label>
-        <label><input type="radio" name="q1" value="C"> C. Good afternoon</label>
-        <label><input type="radio" name="q1" value="D"> D. Goodbye</label>
-      </div>
-    </div>
+<hr>
 
-    <div class="question" data-q="2">
-      <p class="q-title">2) It is 2:30 PM. You see your friend. What greeting is correct?</p>
-      <div class="choices">
-        <label><input type="radio" name="q2" value="A"> A. Good afternoon</label>
-        <label><input type="radio" name="q2" value="B"> B. Good morning</label>
-        <label><input type="radio" name="q2" value="C"> C. Good night</label>
-        <label><input type="radio" name="q2" value="D"> D. See you yesterday</label>
-      </div>
-    </div>
+<h2>Part A: Fill in the blanks</h2>
 
-    <div class="question" data-q="3">
-      <p class="q-title">3) You meet someone for the first time. What do you say?</p>
-      <div class="choices">
-        <label><input type="radio" name="q3" value="A"> A. Thanks a lot</label>
-        <label><input type="radio" name="q3" value="B"> B. Nice to meet you</label>
-        <label><input type="radio" name="q3" value="C"> C. I’m sorry</label>
-        <label><input type="radio" name="q3" value="D"> D. Welcome back</label>
-      </div>
-    </div>
+<p>1. Kelly lives in
+<input id="q1"></p>
 
-    <div class="question" data-q="4">
-      <p class="q-title">4) You want to ask “Apa kabar?” in English. Choose the best option.</p>
-      <div class="choices">
-        <label><input type="radio" name="q4" value="A"> A. What is your name?</label>
-        <label><input type="radio" name="q4" value="B"> B. How are you?</label>
-        <label><input type="radio" name="q4" value="C"> C. Where are you from?</label>
-        <label><input type="radio" name="q4" value="D"> D. How old are you?</label>
-      </div>
-    </div>
+<p>2. Kelly's mother's name is
+<input id="q2"></p>
 
-    <div class="question" data-q="5">
-      <p class="q-title">5) You are leaving the classroom. What do you say?</p>
-      <div class="choices">
-        <label><input type="radio" name="q5" value="A"> A. Good evening</label>
-        <label><input type="radio" name="q5" value="B"> B. Goodbye</label>
-        <label><input type="radio" name="q5" value="C"> C. Good morning</label>
-        <label><input type="radio" name="q5" value="D"> D. Congratulations</label>
-      </div>
-    </div>
+<p>3. Kelly's father works in a
+<input id="q3"></p>
 
-    <div class="question" data-q="6">
-      <p class="q-title">6) It is 8:00 PM. You greet your neighbor.</p>
-      <div class="choices">
-        <label><input type="radio" name="q6" value="A"> A. Good morning</label>
-        <label><input type="radio" name="q6" value="B"> B. Good afternoon</label>
-        <label><input type="radio" name="q6" value="C"> C. Good evening</label>
-        <label><input type="radio" name="q6" value="D"> D. Good noon</label>
-      </div>
-    </div>
+<p>4. Kelly's sister loves listening to
+<input id="q4"></p>
 
-    <div class="question" data-q="7">
-      <p class="q-title">7) Your friend says: “How are you?” What is a good answer?</p>
-      <div class="choices">
-        <label><input type="radio" name="q7" value="A"> A. I’m fine, thank you.</label>
-        <label><input type="radio" name="q7" value="B"> B. My name is Rina.</label>
-        <label><input type="radio" name="q7" value="C"> C. It’s a book.</label>
-        <label><input type="radio" name="q7" value="D"> D. Goodbye.</label>
-      </div>
-    </div>
+<p>5. Brandy is a pet
+<input id="q5"></p>
 
-    <div class="question" data-q="8">
-      <p class="q-title">8) Someone says: “Good morning.” You reply:</p>
-      <div class="choices">
-        <label><input type="radio" name="q8" value="A"> A. Good night</label>
-        <label><input type="radio" name="q8" value="B"> B. Good morning</label>
-        <label><input type="radio" name="q8" value="C"> C. Goodbye</label>
-        <label><input type="radio" name="q8" value="D"> D. Sorry</label>
-      </div>
-    </div>
+<button onclick="checkAnswers()">Check Answers</button>
 
-    <div class="question" data-q="9">
-      <p class="q-title">9) You are going to sleep. What do you say?</p>
-      <div class="choices">
-        <label><input type="radio" name="q9" value="A"> A. Good night</label>
-        <label><input type="radio" name="q9" value="B"> B. Good afternoon</label>
-        <label><input type="radio" name="q9" value="C"> C. Good morning</label>
-        <label><input type="radio" name="q9" value="D"> D. Hello</label>
-      </div>
-    </div>
+<p id="result"></p>
 
-    <div class="question" data-q="10">
-      <p class="q-title">10) Someone says: “See you later.” What is the best response?</p>
-      <div class="choices">
-        <label><input type="radio" name="q10" value="A"> A. See you later.</label>
-        <label><input type="radio" name="q10" value="B"> B. Good night.</label>
-        <label><input type="radio" name="q10" value="C"> C. How are you?</label>
-        <label><input type="radio" name="q10" value="D"> D. Nice to meet you.</label>
-      </div>
-    </div>
+<hr>
 
-    <button type="submit">Submit</button>
-  </form>
+<h2>Part B: Write About Your Family</h2>
 
-  <div id="result" aria-live="polite"></div>
+<p>Write 5–8 sentences about your family.</p>
 
-  <script>
-    // Answer key (Q1–Q10)
-    const answerKey = {
-      1: "B",
-      2: "A",
-      3: "B",
-      4: "B",
-      5: "B",
-      6: "C",
-      7: "A",
-      8: "B",
-      9: "A",
-      10: "A",
-    };
+<textarea placeholder="My name is..."></textarea>
 
-    const POINTS_PER_CORRECT = 10;
-    const TOTAL_QUESTIONS = 10;
-    const MAX_SCORE = TOTAL_QUESTIONS * POINTS_PER_CORRECT;
+</div>
 
-    // 1) Create a Google Apps Script Web App and paste its URL here.
-    // It should accept POST requests and write rows to Google Sheets.
-    // Example format expected: { name, className, score, correctCount, totalQuestions, details, submittedAt }
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFrqoEW0I_FriQgBfNy9tEikbpXsyJwCOdaI-1IA25SlJ_mkaW9K7-Wj4w3YtBfeiN/exec";
+<script>
+function checkAnswers(){
 
-    document.getElementById("quizForm").addEventListener("submit", (e) => {
-      e.preventDefault();
+let score = 0;
 
-      let correctCount = 0;
-      const details = [];
+const answers = {
+q1:"california",
+q2:"carmen",
+q3:"bank",
+q4:"music",
+q5:"dog"
+};
 
-      const form = document.getElementById("quizForm");
-      const name = form.elements["studentName"]?.value?.trim() || "";
-      const className = form.elements["studentClass"]?.value?.trim() || "";
+for(let id in answers){
+let user = document.getElementById(id).value.trim().toLowerCase();
 
-      for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
-        const chosen = document.querySelector(`input[name="q${i}"]:checked`)?.value || null;
-        const correct = answerKey[i];
-        const isCorrect = chosen === correct;
+if(user === answers[id]){
+score++;
+}
+}
 
-        if (isCorrect) correctCount++;
+document.getElementById("result").innerHTML =
+"You got " + score + " out of 5 correct!";
+}
+</script>
 
-        details.push({
-          q: i,
-          chosen: chosen ?? "(blank)",
-          correct,
-          points: isCorrect ? POINTS_PER_CORRECT : 0,
-        });
-      }
-
-      const score = correctCount * POINTS_PER_CORRECT;
-
-      const lines = details.map(d => {
-        const ok = d.points === POINTS_PER_CORRECT;
-        return `<li>Q${d.q}: chosen <b>${d.chosen}</b>, correct <b>${d.correct}</b> — ` +
-               (ok ? `<span class="correct">+${d.points}</span>` : `<span class="wrong">+0</span>`) +
-               `</li>`;
-      }).join("");
-
-      document.getElementById("result").innerHTML = `
-        <h2>Result</h2>
-        <p><b>Score:</b> ${score} / ${MAX_SCORE}</p>
-        <p><b>Correct:</b> ${correctCount} / ${TOTAL_QUESTIONS}</p>
-        <ol>${lines}</ol>
-      `;
-
-      // Send results to Google Sheets (non-blocking)
-      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbxFrqoEW0I_FriQgBfNy9tEikbpXsyJwCOdaI-1IA25SlJ_mkaW9K7-Wj4w3YtBfeiN/exec")) {
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            className,
-            score,
-            correctCount,
-            totalQuestions: TOTAL_QUESTIONS,
-            details,
-            submittedAt: new Date().toISOString(),
-          }),
-        }).catch(() => {});
-      }
-
-      // Scroll to results
-      document.getElementById("result").scrollIntoView({ behavior: "smooth" });
-    });
-  </script>
 </body>
 </html>
