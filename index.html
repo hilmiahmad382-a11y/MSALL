@@ -156,7 +156,7 @@
     // 1) Create a Google Apps Script Web App and paste its URL here.
     // It should accept POST requests and write rows to Google Sheets.
     // Example format expected: { name, className, score, correctCount, totalQuestions, details, submittedAt }
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2tLgknToO8IVBak7Eppn4hfr2lILi3F9zUWi6-QPdGsNF4MPPD8X4eXnDZxx_e3MixQ/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyX8UiMkh1ACqqNA1gdjHpRPZo-xUxV5firPtrxKE9vTtIcQtVRrVrR9c0gyS-iGwg9dA/exec";
 
     document.getElementById("quizForm").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -228,8 +228,41 @@
       }
 
       // Scroll to results
-      document.getElementById("result").scrollIntoView({ behavior: "smooth" });
-    });
+      document.getElementById("result").innerHTML = `
+  <h2>🎉 Quiz Result</h2>
+
+  <p><strong>Name:</strong> ${name}</p>
+  <p><strong>Class:</strong> ${className}</p>
+
+  <h3>Score: ${score} / ${MAX_SCORE}</h3>
+  <h3>Correct Answers: ${correctCount} / ${TOTAL_QUESTIONS}</h3>
+
+  <p>
+    ${
+      score >= 80
+        ? "🌟 Excellent work!"
+        : score >= 60
+        ? "👍 Good job!"
+        : "📚 Keep practicing!"
+    }
+  </p>
+
+  <h3>Answer Review</h3>
+  <ol>
+    ${details.map(d => `
+      <li>
+        Question ${d.q}<br>
+        Your Answer: <b>${d.chosen}</b><br>
+        Correct Answer: <b>${d.correct}</b><br>
+        ${
+          d.points > 0
+            ? '<span class="correct">✔ Correct (+10)</span>'
+            : '<span class="wrong">✘ Incorrect (+0)</span>'
+        }
+      </li>
+    `).join("")}
+  </ol>
+`;
   </script>
 </body>
 </html>
