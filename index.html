@@ -21,6 +21,14 @@
   <p class="muted">Each correct answer = 10 points. Maximum score = 100.</p>
 
   <form id="quizForm">
+    <div class="question">
+      <p class="q-title">Student info</p>
+      <div class="choices">
+        <label>Name: <input type="text" name="studentName" required></label>
+        <label>Class: <input type="text" name="studentClass" required></label>
+      </div>
+    </div>
+
     <div class="question" data-q="1">
       <p class="q-title">1) You meet your teacher at 7:00 AM. What do you say?</p>
       <div class="choices">
@@ -145,11 +153,20 @@
     const TOTAL_QUESTIONS = 10;
     const MAX_SCORE = TOTAL_QUESTIONS * POINTS_PER_CORRECT;
 
+    // 1) Create a Google Apps Script Web App and paste its URL here.
+    // It should accept POST requests and write rows to Google Sheets.
+    // Example format expected: { name, className, score, correctCount, totalQuestions, details, submittedAt }
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrNLvuaR8aL_VzKMtrmnSyJQJ3zyvkdCR6v7g7JQSLIKjdjrBHCD6Nzwu9YJnGy3UQQw/exec";
+
     document.getElementById("quizForm").addEventListener("submit", (e) => {
       e.preventDefault();
 
       let correctCount = 0;
       const details = [];
+
+      const form = document.getElementById("quizForm");
+      const name = form.elements["studentName"]?.value?.trim() || "";
+      const className = form.elements["studentClass"]?.value?.trim() || "";
 
       for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
         const chosen = document.querySelector(`input[name="q${i}"]:checked`)?.value || null;
@@ -181,6 +198,23 @@
         <p><b>Correct:</b> ${correctCount} / ${TOTAL_QUESTIONS}</p>
         <ol>${lines}</ol>
       `;
+
+      // Send results to Google Sheets (non-blocking)
+      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            className,
+            score,
+            correctCount,
+            totalQuestions: TOTAL_QUESTIONS,
+            details,
+            submittedAt: new Date().toISOString(),
+          }),
+        }).catch(() => {});
+      }
 
       // Scroll to results
       document.getElementById("result").scrollIntoView({ behavior: "smooth" });
