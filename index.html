@@ -156,7 +156,7 @@
     // 1) Create a Google Apps Script Web App and paste its URL here.
     // It should accept POST requests and write rows to Google Sheets.
     // Example format expected: { name, className, score, correctCount, totalQuestions, details, submittedAt }
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyX8UiMkh1ACqqNA1gdjHpRPZo-xUxV5firPtrxKE9vTtIcQtVRrVrR9c0gyS-iGwg9dA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFrqoEW0I_FriQgBfNy9tEikbpXsyJwCOdaI-1IA25SlJ_mkaW9K7-Wj4w3YtBfeiN/exec";
 
     document.getElementById("quizForm").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -200,7 +200,7 @@
       `;
 
       // Send results to Google Sheets (non-blocking)
-      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbyX8UiMkh1ACqqNA1gdjHpRPZo-xUxV5firPtrxKE9vTtIcQtVRrVrR9c0gyS-iGwg9dA/exec")) {
+      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbxFrqoEW0I_FriQgBfNy9tEikbpXsyJwCOdaI-1IA25SlJ_mkaW9K7-Wj4w3YtBfeiN/exec")) {
         fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
